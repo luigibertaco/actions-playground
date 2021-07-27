@@ -1,0 +1,18 @@
+name: On Push Ammend Commit
+
+on:
+  push
+
+jobs:
+  ammend_commit:
+    runs-on: ubuntu-latest
+    name: Ammend Commit message on Push
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Ammend commit
+        run: |
+          git config user.name github-action
+          git config user.email github-action@test.com
+          git commit --amend -m "Test new commit message"
+          git push --force
